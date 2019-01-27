@@ -1,0 +1,22 @@
+{
+  "name": "roman",
+  "version": "0.0.1",
+  "description": "This repository is a template of the npm package.",
+  "main": "dist/roman.js",
+  "scripts": {
+    "preversion": "npm test",
+    "version": "npm run build && gulp && git add -A",
+    "postversion": "git push && git push --tags",
+    "pretest": "npm run build",
+    "test": "jest",
+    "build": "rollup src/main.js -c -o dist/roman.js --name Roman"
+  },
+  "keywords": [],
+  "author": "Naoto Ikuno <moon_in_france@yahoo.co.jp>",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^23.6.0",
+    "mocha": "^5.2.0",
+    "rollup": "^1.1.2"
+  }
+}
