@@ -17,12 +17,12 @@
   "author": "Naoto Ikuno <moon_in_france@yahoo.co.jp>",
   "license": "MIT",
   "devDependencies": {
-    "eslint": "^5.16.0",
-    "eslint-config-prettier": "^4.3.0",
-    "eslint-plugin-prettier": "^3.1.0",
-    "jest": "^24.8.0",
-    "mocha": "^5.2.0",
-    "prettier": "^1.17.1",
-    "rollup": "^1.1.2"
+    "eslint": "5.16.0",
+    "eslint-config-prettier": "4.3.0",
+    "eslint-plugin-prettier": "3.1.0",
+    "jest": "24.8.0",
+    "mocha": "5.2.0",
+    "prettier": "1.17.1",
+    "rollup": "1.1.2"
   }
 }
