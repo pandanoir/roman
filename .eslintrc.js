@@ -18,4 +18,15 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: 'module',
   },
+  overrides: [
+    {
+      files: '*.js',
+      env: { node: true },
+    },
+    {
+      files: '*.spec.js',
+      plugins: ['jest'],
+      extends: ['plugin:jest/recommended'],
+    },
+  ],
 };
