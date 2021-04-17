@@ -3,7 +3,7 @@
         "browser": true,
         "es6": true
     },
-    "extends": ["eslint:recommended", "plugin:prettier/recommended"],
+    "extends": ["eslint:recommended", "prettier"],
     "globals": {
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly"
@@ -11,11 +11,5 @@
     "parserOptions": {
         "ecmaVersion": 2018,
         "sourceType": "module"
-    },
-    "rules": {
-        "prettier/prettier": ["error", {
-            "singleQuote": true,
-            "tabWidth": 4
-        }]
     }
 }
