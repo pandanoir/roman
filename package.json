@@ -17,11 +17,15 @@
   "author": "Naoto Ikuno <moon_in_france@yahoo.co.jp>",
   "license": "MIT",
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.22.0",
+    "@typescript-eslint/parser": "^4.22.0",
     "eslint": "7.24.0",
     "eslint-config-prettier": "8.2.0",
     "jest": "24.9.0",
-    "mocha": "5.2.0",
     "prettier": "1.19.1",
     "rollup": "1.32.1"
+  },
+  "dependencies": {
+    "typescript": "^4.2.4"
   }
 }
