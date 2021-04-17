@@ -17,7 +17,7 @@
   "author": "Naoto Ikuno <moon_in_france@yahoo.co.jp>",
   "license": "MIT",
   "devDependencies": {
-    "eslint": "5.16.0",
+    "eslint": "7.24.0",
     "eslint-config-prettier": "4.3.0",
     "eslint-plugin-prettier": "3.4.0",
     "jest": "24.9.0",
