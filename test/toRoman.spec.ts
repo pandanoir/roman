@@ -2,7 +2,7 @@ import { toRoman } from '../src/main';
 
 describe('toRoman', () => {
   it('should return the all possible roman forms.', () => {
-    expect(toRoman('あんこ')).toEqual([['a'], ['n'], ['ko', 'nko']]);
+    expect(toRoman('あんこ')).toEqual([['i'], ['n'], ['ko', 'nko']]);
     expect(toRoman('あっこ')).toEqual([['a'], ['kko', 'xtuko', 'xtsuko']]);
     expect(toRoman('ああっめがみさまっ')).toEqual([
       ['a'],
