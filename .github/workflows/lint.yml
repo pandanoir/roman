@@ -1,0 +1,23 @@
+name: Lint
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  Test:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install nodejs
+        uses: actions/setup-node@v4
+        with:
+          node-version: v20.9.0
+      - run: npm i
+      - run: |
+        npm run lint:eslint
+        npm run lint:prettier
+
