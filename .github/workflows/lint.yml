@@ -18,6 +18,6 @@ jobs:
           node-version: v20.9.0
       - run: npm i
       - run: |
-        npm run lint:eslint
-        npm run lint:prettier
+          npm run lint:eslint
+          npm run lint:prettier
 
