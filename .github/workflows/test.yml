@@ -1,0 +1,23 @@
+name: Jest
+
+on:
+  push:
+    branches:
+      - master
+      - test/*
+
+jobs:
+  Test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install nodejs
+        uses: actions/setup-node@v4
+        with:
+          node-version: v20.9.0
+      - name: Install packages
+        run: npm i
+      - run: npm test
+
