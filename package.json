@@ -16,14 +16,14 @@
   "author": "Naoto Ikuno <moon_in_france@yahoo.co.jp>",
   "license": "MIT",
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^4.22.0",
-    "@typescript-eslint/parser": "^4.22.0",
+    "@typescript-eslint/eslint-plugin": "4.22.0",
+    "@typescript-eslint/parser": "4.22.0",
     "eslint": "7.24.0",
     "eslint-config-prettier": "8.2.0",
-    "prettier": "^3.2.5",
-    "vitest": "^1.5.0"
+    "prettier": "3.2.5",
+    "vitest": "1.5.0"
   },
   "dependencies": {
-    "typescript": "^4.2.4"
+    "typescript": "4.2.4"
   }
 }
