@@ -106,7 +106,7 @@ for (const [hiraganas, consonants] of [
     }
     romanTable[hiraganas[i]] = (consonant[hiraganas[i]] || consonants)
       .split(',')
-      .map(consonant => consonant + 'aiueo'[i]);
+      .map((consonant) => consonant + 'aiueo'[i]);
   }
 }
 

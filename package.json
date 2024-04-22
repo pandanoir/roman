@@ -9,7 +9,7 @@
     "postversion": "git push && git push --tags",
     "test": "jest",
     "lint": "eslint src --fix",
-    "prettier": "prettier src",
+    "prettier": "prettier src --write",
     "build": "webpack"
   },
   "keywords": [],
@@ -20,7 +20,7 @@
     "@typescript-eslint/parser": "^4.22.0",
     "eslint": "7.24.0",
     "eslint-config-prettier": "8.2.0",
-    "prettier": "1.19.1"
+    "prettier": "^3.2.5"
   },
   "dependencies": {
     "@types/jest": "^26.0.22",

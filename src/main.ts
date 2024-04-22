@@ -7,8 +7,8 @@ const isAlphabet = (char: string) =>
 
 const xaToLa = (romanArr: readonly string[]) =>
   romanArr
-    .filter(item => /x(?:[aiueo]|y[auo]|k[ae]|wa)/.test(item))
-    .map(roman => roman.replace(/x([aiueo]|y[auo]|k[ae]|wa)/g, 'l$1'));
+    .filter((item) => /x(?:[aiueo]|y[auo]|k[ae]|wa)/.test(item))
+    .map((roman) => roman.replace(/x([aiueo]|y[auo]|k[ae]|wa)/g, 'l$1'));
 const isUndefined = (a: unknown): a is undefined => typeof a === 'undefined';
 
 type Option = {
@@ -135,7 +135,7 @@ export const hiraganaToRoman = (
       throw new Error(`Unexpected かな文字(${first}) was given. `);
     }
     for (const cons of consonant.split(','))
-      romans.push(...romanOfSmallChar.map(roman => `${cons}${roman}`));
+      romans.push(...romanOfSmallChar.map((roman) => `${cons}${roman}`));
     romanTable[first + second] = romans.concat(); // キャッシュする
     if (option && option.enableLa) return [romans.concat(xaToLa(romans)), 2];
     return [romans, 2];
@@ -169,19 +169,19 @@ export const hiraganaToRoman = (
     if (option && option.enableLa)
       return [
         [
-          ...nextCharRoman.map(item => `${item.charAt(0)}${item}`), // 「マップ」の'ppu'に相当
-          ...nextCharRoman.map(roman => `xtu${roman}`),
-          ...nextCharRoman.map(roman => `xtsu${roman}`),
-          ...nextCharRoman.map(roman => `ltu${roman}`),
-          ...nextCharRoman.map(roman => `ltsu${roman}`),
+          ...nextCharRoman.map((item) => `${item.charAt(0)}${item}`), // 「マップ」の'ppu'に相当
+          ...nextCharRoman.map((roman) => `xtu${roman}`),
+          ...nextCharRoman.map((roman) => `xtsu${roman}`),
+          ...nextCharRoman.map((roman) => `ltu${roman}`),
+          ...nextCharRoman.map((roman) => `ltsu${roman}`),
         ],
         count + 1,
       ];
     return [
       [
-        ...nextCharRoman.map(item => `${item.charAt(0)}${item}`), // 「マップ」の'ppu'に相当
-        ...nextCharRoman.map(roman => `xtu${roman}`),
-        ...nextCharRoman.map(roman => `xtsu${roman}`),
+        ...nextCharRoman.map((item) => `${item.charAt(0)}${item}`), // 「マップ」の'ppu'に相当
+        ...nextCharRoman.map((roman) => `xtu${roman}`),
+        ...nextCharRoman.map((roman) => `xtsu${roman}`),
       ],
       count + 1,
     ];
@@ -190,6 +190,7 @@ export const hiraganaToRoman = (
   if (romanTable[first] == null) throw new Error('unknown character was given');
   return [romanTable[first].concat(), 1]; // 普通のとき
 };
+
 export const getRoman = (
   furigana: string,
   targetPos: number,
@@ -216,15 +217,17 @@ export const getRoman = (
   const consonant = consonantDict[nowChar];
   if (
     furigana.charAt(targetPos - 1) === 'ん' &&
-    !isUndefined(consonant) && !'ny'.includes(consonant)
+    !isUndefined(consonant) &&
+    !'ny'.includes(consonant)
   )
     return [
-      roman.concat(roman.map(roman => `n${roman}`)),
+      roman.concat(roman.map((roman) => `n${roman}`)),
       targetHiraganaLength,
     ];
 
   return [roman, targetHiraganaLength];
 };
+
 export const toRoman = (
   furigana: string,
   option: Option = {}
