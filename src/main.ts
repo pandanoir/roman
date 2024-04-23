@@ -77,12 +77,12 @@ const createSubRomanTable = (option: Option = {}) => {
 };
 
 const baseRomanTable = romanTable;
-export const hiraganaToRoman = (
+export const firstCharToRoman = (
   hiragana: string,
   option: Option = {}
 ): [readonly string[], number] => {
-  // hiraganaToRoman('しゃ') == [['sya', 'sha', 'sixya', 'shixya'], 2]
-  // hiraganaToRoman('っぷ') == [['ppu', 'xtupu', 'xtsupu'], 2]
+  // firstCharToRoman('しゃ') == [['sya', 'sha', 'sixya', 'shixya'], 2]
+  // firstCharToRoman('っぷ') == [['ppu', 'xtupu', 'xtsupu'], 2]
 
   const romanTable = Object.assign(
     {},
@@ -165,7 +165,7 @@ export const hiraganaToRoman = (
       if (option && option.enableLa) return [['xtu', 'xtsu', 'ltu', 'ltsu'], 1];
       return [['xtu', 'xtsu'], 1];
     }
-    const [nextCharRoman, count] = hiraganaToRoman(hiragana.slice(1), option);
+    const [nextCharRoman, count] = firstCharToRoman(hiragana.slice(1), option);
     if (option && option.enableLa)
       return [
         [
@@ -207,7 +207,7 @@ export const getRoman = (
   if (targetPos < 0 || targetPos >= furigana.length)
     throw new Error('range out of the string selected');
 
-  const [roman, targetHiraganaLength] = hiraganaToRoman(
+  const [roman, targetHiraganaLength] = firstCharToRoman(
     furigana.slice(targetPos),
     option
   );

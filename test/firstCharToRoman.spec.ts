@@ -1,45 +1,45 @@
-import { hiraganaToRoman } from '../src/main';
+import { firstCharToRoman } from '../src/main';
 
-describe('hiraganaToRoman', () => {
+describe('firstCharToRoman', () => {
   describe('special cases', () => {
     test(`ぁ,ぃ,ゃ`, () => {
-      expect(hiraganaToRoman('ぁ')).toEqual([['xa'], 1]);
-      expect(hiraganaToRoman('ぃ')).toEqual([['xi'], 1]);
-      expect(hiraganaToRoman('ゅ')).toEqual([['xyu'], 1]);
+      expect(firstCharToRoman('ぁ')).toEqual([['xa'], 1]);
+      expect(firstCharToRoman('ぃ')).toEqual([['xi'], 1]);
+      expect(firstCharToRoman('ゅ')).toEqual([['xyu'], 1]);
     });
     test(`うぁ,しゃ,じぃ`, () => {
-      expect(hiraganaToRoman('うぁ')).toEqual([['uxa', 'wha'], 2]);
-      expect(hiraganaToRoman('しゃ')).toEqual([
+      expect(firstCharToRoman('うぁ')).toEqual([['uxa', 'wha'], 2]);
+      expect(firstCharToRoman('しゃ')).toEqual([
         ['sya', 'sha', 'sixya', 'shixya'],
         2,
       ]);
-      expect(hiraganaToRoman('じぃ')).toEqual([
+      expect(firstCharToRoman('じぃ')).toEqual([
         ['zyi', 'zixi', 'jyi', 'jixi'],
         2,
       ]);
     });
   });
   it(`returns n when "ん" isn't followed by "な" or "や".`, () => {
-    expect(hiraganaToRoman('んか')).toEqual([['n'], 1]);
-    expect(hiraganaToRoman('んちゃ')).toEqual([['n'], 1]);
-    expect(hiraganaToRoman('ん100%')).toEqual([['n'], 1]);
-    expect(hiraganaToRoman('んa')).toEqual([['n'], 1]);
-    expect(hiraganaToRoman('ん.')).toEqual([['n'], 1]);
-    expect(hiraganaToRoman('ん!')).toEqual([['n'], 1]);
+    expect(firstCharToRoman('んか')).toEqual([['n'], 1]);
+    expect(firstCharToRoman('んちゃ')).toEqual([['n'], 1]);
+    expect(firstCharToRoman('ん100%')).toEqual([['n'], 1]);
+    expect(firstCharToRoman('んa')).toEqual([['n'], 1]);
+    expect(firstCharToRoman('ん.')).toEqual([['n'], 1]);
+    expect(firstCharToRoman('ん!')).toEqual([['n'], 1]);
   });
   it(`returns nn when "ん" is followed by "な" or "や".`, () => {
-    expect(hiraganaToRoman('んな')).toEqual([['nn'], 1]);
-    expect(hiraganaToRoman('んや')).toEqual([['nn'], 1]);
-    expect(hiraganaToRoman('んい')).toEqual([['nn'], 1]);
-    expect(hiraganaToRoman('ん')).toEqual([['nn'], 1]);
+    expect(firstCharToRoman('んな')).toEqual([['nn'], 1]);
+    expect(firstCharToRoman('んや')).toEqual([['nn'], 1]);
+    expect(firstCharToRoman('んい')).toEqual([['nn'], 1]);
+    expect(firstCharToRoman('ん')).toEqual([['nn'], 1]);
   });
   it(`returns [xtu, xtsu] if 'っ' is followed by no char or alphabet.`, () => {
-    expect(hiraganaToRoman('っ')).toEqual([['xtu', 'xtsu'], 1]);
-    expect(hiraganaToRoman('っ2')).toEqual([['xtu', 'xtsu'], 1]);
+    expect(firstCharToRoman('っ')).toEqual([['xtu', 'xtsu'], 1]);
+    expect(firstCharToRoman('っ2')).toEqual([['xtu', 'xtsu'], 1]);
   });
   it(`adds consonant if 'っ' is followed by hiragana.`, () => {
-    expect(hiraganaToRoman('っぷ')).toEqual([['ppu', 'xtupu', 'xtsupu'], 2]);
-    expect(hiraganaToRoman('っちゃ')).toEqual([
+    expect(firstCharToRoman('っぷ')).toEqual([['ppu', 'xtupu', 'xtsupu'], 2]);
+    expect(firstCharToRoman('っちゃ')).toEqual([
       [
         'ttya',
         'ccha',
@@ -59,40 +59,40 @@ describe('hiraganaToRoman', () => {
   });
   it(`throws error if unknown character is given.`, () => {
     expect(() => {
-      hiraganaToRoman('🍣');
+      firstCharToRoman('🍣');
     }).toThrowError('unknown character was given');
     expect(() => {
-      hiraganaToRoman('漢字非対応');
+      firstCharToRoman('漢字非対応');
     }).toThrowError('unknown character was given');
   });
   it(`accepts option.romanTable if unknown character is given.`, () => {
     expect(
-      hiraganaToRoman('ふぁ', {
+      firstCharToRoman('ふぁ', {
         romanTable: { ふぁ: ['fa', 'fuxa', 'hwa', 'huxa'] },
       })
     ).toEqual([['fa', 'fuxa', 'hwa', 'huxa'], 2]);
-    expect(hiraganaToRoman('🍣', { romanTable: { '🍣': ['sushi'] } })).toEqual([
+    expect(firstCharToRoman('🍣', { romanTable: { '🍣': ['sushi'] } })).toEqual([
       ['sushi'],
       1,
     ]);
   });
   describe('enableLa', () => {
     it(`returns [xtu, xtsu, ltu, ltsu] if 'っ' is followed by no char or alphabet.`, () => {
-      expect(hiraganaToRoman('っ', { enableLa: true })).toEqual([
+      expect(firstCharToRoman('っ', { enableLa: true })).toEqual([
         ['xtu', 'xtsu', 'ltu', 'ltsu'],
         1,
       ]);
-      expect(hiraganaToRoman('っ2', { enableLa: true })).toEqual([
+      expect(firstCharToRoman('っ2', { enableLa: true })).toEqual([
         ['xtu', 'xtsu', 'ltu', 'ltsu'],
         1,
       ]);
     });
     it(`adds consonant if 'っ' is followed by hiragana.`, () => {
-      expect(hiraganaToRoman('っぷ', { enableLa: true })).toEqual([
+      expect(firstCharToRoman('っぷ', { enableLa: true })).toEqual([
         ['ppu', 'xtupu', 'xtsupu', 'ltupu', 'ltsupu'],
         2,
       ]);
-      expect(hiraganaToRoman('っちゃ', { enableLa: true })).toEqual([
+      expect(firstCharToRoman('っちゃ', { enableLa: true })).toEqual([
         [
           'ttya',
           'ccha',
@@ -129,38 +129,38 @@ describe('hiraganaToRoman', () => {
       ]);
     });
     it(`returns decided value when received "ぁ" or "ゃ".`, () => {
-      expect(hiraganaToRoman('ぁ', { enableLa: true })).toEqual([
+      expect(firstCharToRoman('ぁ', { enableLa: true })).toEqual([
         ['xa', 'la'],
         1,
       ]);
-      expect(hiraganaToRoman('ぃ', { enableLa: true })).toEqual([
+      expect(firstCharToRoman('ぃ', { enableLa: true })).toEqual([
         ['xi', 'li'],
         1,
       ]);
-      expect(hiraganaToRoman('ゅ', { enableLa: true })).toEqual([
+      expect(firstCharToRoman('ゅ', { enableLa: true })).toEqual([
         ['xyu', 'lyu'],
         1,
       ]);
     });
     it(`returns cached result if romanTable has the answer.`, () => {
-      expect(hiraganaToRoman('うぁ', { enableLa: true })).toEqual([
+      expect(firstCharToRoman('うぁ', { enableLa: true })).toEqual([
         ['uxa', 'wha', 'ula'],
         2,
       ]);
-      expect(hiraganaToRoman('しゃ', { enableLa: true })).toEqual([
+      expect(firstCharToRoman('しゃ', { enableLa: true })).toEqual([
         ['sya', 'sha', 'sixya', 'shixya', 'silya', 'shilya'],
         2,
       ]);
     });
     it(`calculates result if romanTable has no answer.`, () => {
-      expect(hiraganaToRoman('じぃ', { enableLa: true })).toEqual([
+      expect(firstCharToRoman('じぃ', { enableLa: true })).toEqual([
         ['zyi', 'zixi', 'jyi', 'jixi', 'zili', 'jili'],
         2,
       ]);
     });
     it(`accepts option.romanTable if unknown character is given.`, () => {
       expect(
-        hiraganaToRoman('ふぁ', {
+        firstCharToRoman('ふぁ', {
           romanTable: { ふぁ: ['fa', 'fuxa', 'hwa', 'huxa'] },
           enableLa: true,
         })
@@ -169,7 +169,7 @@ describe('hiraganaToRoman', () => {
   });
   describe('enableCya', () => {
     it(`returns cached result if romanTable has the answer.`, () => {
-      expect(hiraganaToRoman('ちゃ', { enableCya: true })).toEqual([
+      expect(firstCharToRoman('ちゃ', { enableCya: true })).toEqual([
         ['tya', 'cha', 'tixya', 'chixya', 'cya'],
         2,
       ]);
@@ -177,7 +177,7 @@ describe('hiraganaToRoman', () => {
   });
   describe('enableHwa', () => {
     it(`returns cached result if romanTable has the answer.`, () => {
-      expect(hiraganaToRoman('ふぁ', { enableHwa: true })).toEqual([
+      expect(firstCharToRoman('ふぁ', { enableHwa: true })).toEqual([
         ['fa', 'fuxa', 'huxa', 'hwa'],
         2,
       ]);
@@ -185,7 +185,7 @@ describe('hiraganaToRoman', () => {
   });
   describe('enableQa', () => {
     it(`returns cached result if romanTable has the answer.`, () => {
-      expect(hiraganaToRoman('くぁ', { enableQa: true })).toEqual([
+      expect(firstCharToRoman('くぁ', { enableQa: true })).toEqual([
         ['kwa', 'kuxa', 'qa'],
         2,
       ]);
