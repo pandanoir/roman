@@ -16,7 +16,7 @@ jobs:
       - name: Install nodejs
         uses: actions/setup-node@v7
         with:
-          node-version: 24.18.0
+          node-version: 24.18.1
       - run: npm i
       - run: npm test
 
