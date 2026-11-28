@@ -19,7 +19,7 @@
   "license": "MIT",
   "devDependencies": {
     "@eslint/js": "10.0.1",
-    "eslint": "10.15.0",
+    "eslint": "10.16.0",
     "eslint-config-prettier": "10.1.9",
     "prettier": "3.10.1",
     "typescript": "6.0.3",
